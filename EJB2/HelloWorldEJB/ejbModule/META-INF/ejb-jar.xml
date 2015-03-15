@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar id="ejb-jar_ID" version="2.1"
+	xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+	<display-name>HelloWorldEJB</display-name>
+	<enterprise-beans>
+		<session>
+			<ejb-name>HELLOWORLDEJB</ejb-name>
+			<home>com.client.HelloWorldEJBHome</home>
+			<remote>com.client.HelloWorldEJBRemote</remote>
+			<ejb-class>com.session.HelloWorldEJBBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+		</session>
+	</enterprise-beans>
+	<ejb-client-jar>HelloWorldEJBClient.jar</ejb-client-jar>
+</ejb-jar>
