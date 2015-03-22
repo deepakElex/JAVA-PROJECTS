@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: com.vik.JMSSender
+Class-Path: jboss-client.jar
+
