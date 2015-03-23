@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="JMSWeb_Sender_Receiver">
+        <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <property name="java-output-path" value="/JMSWeb_Sender_Receiver/build/classes"/>
+        <property name="context-root" value="JMSWeb_Sender_Receiver"/>
+    </wb-module>
+</project-modules>
