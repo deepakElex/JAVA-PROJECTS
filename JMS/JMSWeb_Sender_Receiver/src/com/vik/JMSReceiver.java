@@ -28,7 +28,7 @@ import javax.naming.NamingException;
  */
 public class JMSReceiver {
 	public static ArrayList<String> receive() {
-		ArrayList<String> messages=new ArrayList<String>();
+		ArrayList<String> messages = new ArrayList<String>();
 		QueueConnectionFactory factory = null;
 		QueueConnection connection = null;
 		QueueSession session = null;
@@ -38,12 +38,17 @@ public class JMSReceiver {
 		try {
 			// jndiProps application Server Defaults
 			Context context = new InitialContext();
-
-			factory = (QueueConnectionFactory) context.lookup("ConnectionFactory");
+			// hardcoded ConnectionFactory so moved in env ref
+			// factory = (QueueConnectionFactory)
+			// context.lookup("ConnectionFactory");
+			factory = (QueueConnectionFactory) context.lookup("java:comp/env/MYCONNFACTORY");
 			connection = factory.createQueueConnection("test", "test@123");
-			session = connection.createQueueSession(false,QueueSession.AUTO_ACKNOWLEDGE);
+			session = connection.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 
-			queue = (Queue) context.lookup("test/DummmyQueue");
+			// hardcoded test/DummmyQueue so moved in env ref
+			// queue = (Queue) context.lookup("test/DummmyQueue");
+			queue = (Queue) context.lookup("java:comp/env/MYQUEUE");
+
 			receiver = session.createReceiver(queue);
 			connection.start();
 
@@ -56,7 +61,7 @@ public class JMSReceiver {
 					messages.add(text.getText());
 				} else if (message instanceof ObjectMessage) {
 					ObjectMessage object = (ObjectMessage) message;
-					System.out.println("Received Object Message is : " 	+ object.getObject());
+					System.out.println("Received Object Message is : " + object.getObject());
 				}
 			} while (message != null);
 

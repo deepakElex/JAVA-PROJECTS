@@ -11,7 +11,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="C:/DEVELOPMENT/ECLIPSE/eclipse-jee-juno-SR2-win32-x86_64/oc4j_extended_101350/j2ee/home/lib/servlet.jar" sourcepath="C:/Users/aa/.m2/repository/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar"/>
 	<classpathentry kind="con" path="org.jboss.ide.eclipse.as.classpath.core.javaee-5.0"/>
-	<classpathentry kind="lib" path="C:/Users/aa/.m2/repository/jstl/jstl/1.2/jstl-1.2.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/jdk1.6.0_45_x64">
 		<attributes>
 			<attribute name="owner.project.facets" value="java"/>
