@@ -45,7 +45,7 @@ public class HelloWorldEJBLocalBean implements SessionBean {
 
 	
 	public String greetings() {
-		return "Remote EJB says Hello World!!";
+		return "Local EJB says Hello World!!";
 	}
 	
 }

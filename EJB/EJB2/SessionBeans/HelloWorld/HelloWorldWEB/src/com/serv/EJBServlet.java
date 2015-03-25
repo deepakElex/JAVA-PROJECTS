@@ -41,7 +41,7 @@ public class EJBServlet extends HttpServlet {
 			InitialContext itx = new InitialContext();  
 			//this will not affect as this is a local client anyways, test using java to see the diff			
 
-			if ("local".equals(callType)) {
+			if ("remote".equals(callType)) {
  				HomeObj = itx.lookup("java:comp/env/ejb/remoteVikrant");
 				HelloWorldEJBHome home = (HelloWorldEJBHome) PortableRemoteObject.narrow(HomeObj, HelloWorldEJBHome.class);
 				HelloWorldEJBObject remote = home.create();

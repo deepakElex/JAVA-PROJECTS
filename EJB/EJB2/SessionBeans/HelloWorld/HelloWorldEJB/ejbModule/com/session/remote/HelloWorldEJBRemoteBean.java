@@ -43,7 +43,7 @@ public class HelloWorldEJBRemoteBean implements SessionBean {
 	}
 
 	public String greetings() {
-		return "Local EJB says Hello World!!";
+		return "Remote EJB says Hello World!!";
 	}
 
 }
