@@ -8,6 +8,8 @@
 </head>
 <body>
 	<h1>Hello World Web</h1>
-	Click <a href="EJBServlet">here</a> to call EJB..
+	Click <a href="EJBServlet?call=remote">here</a> to call Remote EJB..
+	<br />
+	Click <a href="EJBServlet?call=local">here</a> to call Local EJB..
 </body>
 </html>

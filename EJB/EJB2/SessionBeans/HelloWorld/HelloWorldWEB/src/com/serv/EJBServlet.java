@@ -13,8 +13,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.client.HelloWorldEJBHome;
-import com.client.HelloWorldEJBRemote;
+import com.client.local.HelloWorldEJBLocalHome;
+import com.client.local.HelloWorldEJBLocalObject;
+import com.client.remote.HelloWorldEJBHome;
+import com.client.remote.HelloWorldEJBObject;
 
 public class EJBServlet extends HttpServlet {
 
@@ -24,25 +26,33 @@ public class EJBServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("Calling the EJB Method");
 
+		String callType = request.getParameter("call");
+		Object HomeObj = null;
+		String sendMsg = null;
 		Hashtable<String, String> env = new Hashtable<String, String>();
-		env.put("INITIAL_CONTEXT_FACTORY",
-				"com.evermind.server.ApplicationClientInitialContextFactory");
+		env.put("INITIAL_CONTEXT_FACTORY", "com.evermind.server.ApplicationClientInitialContextFactory");
 		env.put("PROVIDER_URL", "ormi://localhost:12401");
 
 		try {
 			/*InitialContext itx = new InitialContext(env);*/  
 			InitialContext itx = new InitialContext();  
-			Object HomeObj = itx.lookup("HELLOWORLDEJB");
+			//this will not affect as this is a local client anyways, test using java to see the diff			
 
-			HelloWorldEJBHome home = (HelloWorldEJBHome) PortableRemoteObject
-					.narrow(HomeObj, HelloWorldEJBHome.class);
-			HelloWorldEJBRemote remote = home.create();
-
-			request.setAttribute("ejbmsg", remote.greetings());
+			if ("local".equals(callType)) {
+ 				HomeObj = itx.lookup("java:comp/env/ejb/remoteVikrant");
+				HelloWorldEJBHome home = (HelloWorldEJBHome) PortableRemoteObject.narrow(HomeObj, HelloWorldEJBHome.class);
+				HelloWorldEJBObject remote = home.create();
+				sendMsg = remote.greetings();
+			} else {
+				HomeObj = itx.lookup("java:comp/env/ejb/localVikrant");
+				HelloWorldEJBLocalHome home = (HelloWorldEJBLocalHome) HomeObj;
+				HelloWorldEJBLocalObject remote = home.create();
+				sendMsg = remote.greetings();
+			}
+			request.setAttribute("ejbmsg", sendMsg);
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (CreateException e) {

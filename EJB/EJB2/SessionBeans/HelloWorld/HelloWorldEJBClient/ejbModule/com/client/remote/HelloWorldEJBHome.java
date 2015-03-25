@@ -1,4 +1,4 @@
-package com.client;
+package com.client.remote;
 
 import java.rmi.RemoteException;
 
@@ -7,6 +7,6 @@ import javax.ejb.EJBHome;
 
 public interface HelloWorldEJBHome extends EJBHome {
 
-	public HelloWorldEJBRemote create() throws RemoteException, CreateException;
+	public HelloWorldEJBObject create() throws CreateException , RemoteException ;
 
 }

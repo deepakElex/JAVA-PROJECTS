@@ -1,4 +1,4 @@
-package com.session;
+package com.session.remote;
 
 import java.rmi.RemoteException;
 
@@ -7,7 +7,8 @@ import javax.ejb.EJBException;
 import javax.ejb.SessionBean;
 import javax.ejb.SessionContext;
 
-public class HelloWorldEJBBean implements SessionBean {
+
+public class HelloWorldEJBLocalBean implements SessionBean {
 
 	/**
 	 * 
@@ -17,33 +18,34 @@ public class HelloWorldEJBBean implements SessionBean {
 	@Override
 	public void ejbActivate() throws EJBException, RemoteException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void ejbPassivate() throws EJBException, RemoteException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
 	public void ejbRemove() throws EJBException, RemoteException {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 	@Override
-	public void setSessionContext(SessionContext arg0) throws EJBException,
-			RemoteException {
+	public void setSessionContext(SessionContext arg0) throws EJBException, RemoteException {
 		// TODO Auto-generated method stub
+		
 	}
 
 	public void ejbCreate() throws CreateException {
 
 	}
 
+	
 	public String greetings() {
-		return "Hello World";
+		return "Remote EJB says Hello World!!";
 	}
-
+	
 }

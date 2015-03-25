@@ -7,7 +7,7 @@
 <title>Hello World Web Success</title>
 </head>
 <body>
-	<h1>EJB Says - ${ejbmsg}</h1>
+	<h1>Returned MSG - ${ejbmsg}</h1>
 	Click <a href="index.jsp">here</a> to go back..
 </body>
 </html>
