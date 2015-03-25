@@ -9,12 +9,12 @@
 
 	<resource-ref>
 		<res-ref-name>MYCONNFACTORY</res-ref-name>
-		<jndi-name>java:/ConnectionFactory</jndi-name>
+		<jndi-name>java:/jms/MyFirstLocalConnectionFactory</jndi-name>
 	</resource-ref>
 
-	<resource-ref>
-		<res-ref-name>MYQUEUE</res-ref-name>
-		<jndi-name>java:/test/DummmyQueue</jndi-name>
-	</resource-ref>
+	<resource-env-ref>
+		<resource-env-ref-name>MYQUEUE</resource-env-ref-name>
+		<jndi-name>java:/jms/MyFirstLocalQueue</jndi-name>
+	</resource-env-ref>
 
 </jboss-web>
