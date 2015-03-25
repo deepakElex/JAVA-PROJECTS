@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<orion-web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-web-10_0.xsd" >
+
+	
+	<resource-ref-mapping name="MYCONNFACTORY"	location="jms/VCF" />
+	<resource-env-ref-mapping name="MYQUEUE" location="jms/VQ" />
+	
+	 
+	
+</orion-web-app>
