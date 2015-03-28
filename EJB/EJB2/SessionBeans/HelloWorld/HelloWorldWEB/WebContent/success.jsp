@@ -7,6 +7,7 @@
 <title>Hello World Web Success</title>
 </head>
 <body>
+	<font color="red"> <pre>${errormsg}</pre> </font>
 	<h1>${server} Says - ${ejbmsg}</h1>
 	Click <a href="index.jsp">here</a> to go back..
 </body>
