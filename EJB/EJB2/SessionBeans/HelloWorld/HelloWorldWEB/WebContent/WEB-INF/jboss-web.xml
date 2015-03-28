@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+      http://www.jboss.com/xml/ns/javaee
+      http://www.jboss.org/j2ee/schema/jboss-web_5_1.xsd">
+
+	<env-entry>
+		<env-entry-name>ServerName</env-entry-name>
+		<env-entry-value>Jboss Server</env-entry-value>
+	</env-entry>
+
+	<ejb-ref>
+		<ejb-ref-name>ejb/remoteVikrant</ejb-ref-name>
+		<jndi-name>java:app/HelloWorldEJB/HELLOWORLDREMOTEEJB!com.client.remote.HelloWorldEJBHome</jndi-name>
+	</ejb-ref>
+
+	<ejb-local-ref>
+		<ejb-ref-name>ejb/localVikrant</ejb-ref-name>
+		<jndi-name>java:app/HelloWorldEJB/HELLOWORLDLOCALEJB!com.client.local.HelloWorldEJBLocalHome</jndi-name>
+	</ejb-local-ref>
+
+</jboss-web>
