@@ -1,4 +1,4 @@
-package com.session.remote;
+package com.session.local;
 
 import java.rmi.RemoteException;
 

@@ -15,10 +15,53 @@
 			<ejb-name>HELLOWORLDLOCALEJB</ejb-name>
 			<local-home>com.client.local.HelloWorldEJBLocalHome</local-home>
 			<local>com.client.local.HelloWorldEJBLocalObject</local>
-			<ejb-class>com.session.remote.HelloWorldEJBLocalBean</ejb-class>
+			<ejb-class>com.session.local.HelloWorldEJBLocalBean</ejb-class>
 			<session-type>Stateless</session-type>
 			<transaction-type>Container</transaction-type>
 		</session>
+		<message-driven>
+			<ejb-name>HELLOWORLDMDB</ejb-name>
+			<ejb-class>com.message.HelloWorldEJBMessageDrivenBean</ejb-class>
+			<messaging-type>javax.jms.MessageListener</messaging-type>
+			<transaction-type>Container</transaction-type>
+			<activation-config>
+
+					<activation-config-property>
+						<activation-config-property-name>DestinationType</activation-config-property-name>
+						<activation-config-property-value>javax.jms.Queue</activation-config-property-value>
+					</activation-config-property>
+
+				<activation-config-property>
+
+					<activation-config-property-name>DestinationName</activation-config-property-name>
+					<activation-config-property-value>jms/VQ</activation-config-property-value>
+				</activation-config-property>
+
+				<activation-config-property>
+					<activation-config-property-name>ConnectionFactoryJndiName</activation-config-property-name>
+					<activation-config-property-value>jms/VCF</activation-config-property-value>
+				</activation-config-property>
+
+
+				<activation-config-property>
+					<!-- Only for JBOSS Required as he listens to  destination-->
+					<activation-config-property-name>destination</activation-config-property-name>
+					<activation-config-property-value>java:/jms/MyFirstLocalQueue</activation-config-property-value>
+				</activation-config-property>
+
+				<activation-config-property>
+					<activation-config-property-name>acknowledgeMode
+                </activation-config-property-name>
+					<activation-config-property-value>Auto-acknowledge
+                </activation-config-property-value>
+				</activation-config-property>
+			</activation-config>
+
+
+
+
+		</message-driven>
+
 	</enterprise-beans>
 	<ejb-client-jar>HelloWorldEJBClient.jar</ejb-client-jar>
 </ejb-jar>
