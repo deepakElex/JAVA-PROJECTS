@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+	<%@page import="java.util.ArrayList" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,10 +9,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<font color="${color}"> <c:out value="${msg}" />
+	<font color="${color}"> ${msg} 
 	</font>
 
-	<h2>Hello JMS APP</h2>
+	<h2>Hello JMS APP</h2> 
+
 
 	<form action="actionPerformed">
 		<label for="textMessage">Enter your Test Message Here:</label> 
@@ -20,9 +22,21 @@
 		<br /> <br /> 
 		<button  tabindex="3" type="submit" name="action" value="RECEIVE" accesskey="C" >RE<u>C</u>EIVE</button>
 		<br />
-		<c:forEach items="${messages}" var="message">
+		<%
+		try{
+			if (request.getAttribute("messages")!= null){	
+		ArrayList<String> messages =(ArrayList<String>)(request.getAttribute("messages"));
+		for (String message:messages)
+		{
+		out.print("<p>"+message+"<p>");
+		}}
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		%>
+		<%-- <c:forEach items="${messages}" var="message">
 			<p>Received Message: ${message}</p>
-		</c:forEach>
+		</c:forEach> --%>
 	</form>
 	
 </body>

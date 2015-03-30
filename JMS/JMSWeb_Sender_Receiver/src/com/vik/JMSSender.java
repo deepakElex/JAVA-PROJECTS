@@ -40,7 +40,13 @@ public class JMSSender {
 			// factory = (QueueConnectionFactory)
 			// context.lookup("ConnectionFactory");
 			factory = (QueueConnectionFactory) context.lookup("java:comp/env/MYCONNFACTORY");
-			connection = factory.createQueueConnection("test", "test@123");
+		//	connection = factory.createQueueConnection("test", "test@123");
+		//	connection = factory.createQueueConnection("oc4jadmin", "oc4jadmin");
+			
+			String username=(String)context.lookup("java:comp/env/username");
+			String password=(String)context.lookup("java:comp/env/password");
+			connection = factory.createQueueConnection(username, password);
+			
 			session = connection.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 
 			// hardcoded test/DummmyQueue so moved in env ref

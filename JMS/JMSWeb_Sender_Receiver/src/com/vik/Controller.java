@@ -19,9 +19,9 @@ public class Controller extends HttpServlet {
 			request.setAttribute("color", cnt == 0 ? "red" : "green");
 			request.setAttribute("msg", cnt == 0 ? "** Problem Occured," + "" + " could not send message " : "** Message Sent Successfully");
 
-			if (cnt == 0)
+			if (cnt == 0)  
 				request.setAttribute("textMessage", textMessage);
-			else
+			else 
 				request.setAttribute("textMessage", "");
 		}
 		if ("RECEIVE".equals(request.getParameter("action"))) {

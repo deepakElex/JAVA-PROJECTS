@@ -3,7 +3,8 @@
 <orion-web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-web-10_0.xsd" >
 
-	
+	<env-entry-mapping name="username" >oc4jadmin</env-entry-mapping>
+	<env-entry-mapping name="password" >oc4jadmin</env-entry-mapping>
 	<resource-ref-mapping name="MYCONNFACTORY"	location="jms/VCF" />
 	<resource-env-ref-mapping name="MYQUEUE" location="jms/VQ" />
 	

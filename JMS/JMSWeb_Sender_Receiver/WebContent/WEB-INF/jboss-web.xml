@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<jboss-web xmlns="http://www.jboss.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="
       http://www.jboss.com/xml/ns/javaee
       http://www.jboss.org/j2ee/schema/jboss-web_5_1.xsd">
 
 	<context-root>JMS</context-root>
 
+	<env-entry>
+		<env-entry-name>username</env-entry-name>
+		<env-entry-value>test</env-entry-value>
+	</env-entry>
+	
+	<env-entry>
+		<env-entry-name>password</env-entry-name>
+		<env-entry-value>test@123</env-entry-value>
+	</env-entry>
+
 	<resource-ref>
 		<res-ref-name>MYCONNFACTORY</res-ref-name>
 		<jndi-name>java:/jms/MyFirstLocalConnectionFactory</jndi-name>
 	</resource-ref>
+
 
 	<resource-env-ref>
 		<resource-env-ref-name>MYQUEUE</resource-env-ref-name>
