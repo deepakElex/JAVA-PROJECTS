@@ -34,11 +34,12 @@ public class JMSSender {
 			//jndiProps are comming from the jndi.properties file
 			Context context = new InitialContext();
 			
-			QueueConnectionFactory factory = (QueueConnectionFactory)context.lookup("jms/RemoteConnectionFactory");
-	        QueueConnection connection = factory.createQueueConnection("test","test@123");;
+			QueueConnectionFactory factory = (QueueConnectionFactory)context.lookup(PropertiesUtil.getProperty("CONN_FACTORY"));
+			QueueConnection connection = factory.createQueueConnection(PropertiesUtil.getProperty("java.naming.security.principal"),
+					PropertiesUtil.getProperty("java.naming.security.credentials"));
 	        QueueSession session =    connection.createQueueSession(false,QueueSession.AUTO_ACKNOWLEDGE);
 	        Context contextw = new InitialContext();
-	        Queue queue = (Queue)context.lookup("test/DummmyQueue");
+	        Queue queue = (Queue)context.lookup(PropertiesUtil.getProperty("QUEUE"));
 	        QueueSender sender = session.createSender(queue);
 	        
 	        System.out.println("Sending message to queue");

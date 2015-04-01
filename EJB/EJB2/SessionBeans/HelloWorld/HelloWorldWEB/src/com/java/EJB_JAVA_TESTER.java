@@ -2,7 +2,7 @@ package com.java;
 
 import java.rmi.RemoteException;
 import java.util.Hashtable;
-
+ 
 import javax.ejb.CreateException;
 import javax.naming.Context;
 import javax.naming.InitialContext;
