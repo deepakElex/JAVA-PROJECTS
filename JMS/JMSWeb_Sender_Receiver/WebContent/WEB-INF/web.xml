@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app id="WebApp_ID" version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
-
-  <display-name>JMSWeb_Sender_Receiver1</display-name>
-  <welcome-file-list>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:javaee="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd" id="WebApp_ID" version="2.4">
+    <welcome-file-list>
     <welcome-file>index.html</welcome-file>
     <welcome-file>index.htm</welcome-file>
     <welcome-file>index.jsp</welcome-file>
@@ -18,43 +16,21 @@
     <servlet-name>Controller</servlet-name>
     <url-pattern>/actionPerformed</url-pattern>
   </servlet-mapping>
-  
- 
- <resource-ref>
-  <res-ref-name>MYCONNFACTORY</res-ref-name>
-  <res-type>javax.jms.QueueConnectionFactory</res-type>
-  <res-auth>Container</res-auth>
-</resource-ref>
-
-<resource-env-ref>
-<resource-env-ref-name>MYQUEUE</resource-env-ref-name>
-<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
-</resource-env-ref>
-
-
-<env-entry>
-<env-entry-name>username</env-entry-name>
-<env-entry-type>java.lang.String</env-entry-type>
-</env-entry>
-<env-entry>
-<env-entry-name>password</env-entry-name>
-<env-entry-type>java.lang.String</env-entry-type>
-</env-entry>
-  
-  <!-- Only to load it in dubugg mode -->
-<!--   <servlet>
-    <servlet-name>jsp</servlet-name>
-    <servlet-class>org.apache.jasper.servlet.JspServlet</servlet-class>
-    <init-param>
-      <param-name>checkInterval</param-name>
-      <param-value>1</param-value>
-    </init-param>
-    <init-param>
-      <param-name>modificationTestInterval</param-name>
-      <param-value>1</param-value>
-    </init-param>
-  </servlet> -->
-  
-  
-  
+  <resource-ref>
+    <res-ref-name>MYCONNFACTORY</res-ref-name>
+    <res-type>javax.jms.QueueConnectionFactory</res-type>
+    <res-auth>Container</res-auth>
+  </resource-ref>
+  <resource-env-ref>
+    <resource-env-ref-name>MYQUEUE</resource-env-ref-name>
+    <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+  </resource-env-ref>
+  <env-entry>
+    <env-entry-name>username</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+  </env-entry>
+  <env-entry>
+    <env-entry-name>password</env-entry-name>
+    <env-entry-type>java.lang.String</env-entry-type>
+  </env-entry>
 </web-app>

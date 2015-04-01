@@ -40,13 +40,14 @@ public class JMSSender {
 			// factory = (QueueConnectionFactory)
 			// context.lookup("ConnectionFactory");
 			factory = (QueueConnectionFactory) context.lookup("java:comp/env/MYCONNFACTORY");
-		//	connection = factory.createQueueConnection("test", "test@123");
-		//	connection = factory.createQueueConnection("oc4jadmin", "oc4jadmin");
-			
-			String username=(String)context.lookup("java:comp/env/username");
-			String password=(String)context.lookup("java:comp/env/password");
+			// connection = factory.createQueueConnection("test", "test@123");
+			// connection = factory.createQueueConnection("oc4jadmin",
+			// "oc4jadmin");
+
+			String username = (String) context.lookup("java:comp/env/username");
+			String password = (String) context.lookup("java:comp/env/password");
 			connection = factory.createQueueConnection(username, password);
-			
+
 			session = connection.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 
 			// hardcoded test/DummmyQueue so moved in env ref
@@ -54,12 +55,12 @@ public class JMSSender {
 			queue = (Queue) context.lookup("java:comp/env/MYQUEUE");
 			sender = session.createSender(queue);
 
-			System.out.println("Sending message to queue");
+			// System.out.println("**Sending message to queue**");
 
 			TextMessage message1 = session.createTextMessage();
 			message1.setText(textMessage);
 			sender.send(message1);
-			System.out.println("1. Sent TextMessage to the Queue");
+			System.out.printf("%s \t>---------->\t Sent to the %s \n", textMessage, queue.getQueueName());
 
 			/*
 			 * ObjectMessage objMsg = session.createObjectMessage(); String
@@ -67,7 +68,7 @@ public class JMSSender {
 			 * objMsg.setObject(employee); sender.send(objMsg);
 			 * System.out.println("2. Sent ObjectMessage to the Queue");
 			 */
-
+			// System.out.println("**Sending finished**");
 			return 1;
 
 		} catch (Exception e) {

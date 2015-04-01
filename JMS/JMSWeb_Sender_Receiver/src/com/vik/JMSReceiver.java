@@ -35,7 +35,6 @@ public class JMSReceiver {
 		Queue queue = null;
 		QueueReceiver receiver = null;
 
-		
 		try {
 			// jndiProps application Server Defaults
 			Context context = new InitialContext();
@@ -43,13 +42,14 @@ public class JMSReceiver {
 			// factory = (QueueConnectionFactory)
 			// context.lookup("ConnectionFactory");
 			factory = (QueueConnectionFactory) context.lookup("java:comp/env/MYCONNFACTORY");
-		//	connection = factory.createQueueConnection("test", "test@123");
-		//	connection = factory.createQueueConnection("oc4jadmin", "oc4jadmin");
-			
-			String username=(String)context.lookup("java:comp/env/username");
-			String password=(String)context.lookup("java:comp/env/password");
+			// connection = factory.createQueueConnection("test", "test@123");
+			// connection = factory.createQueueConnection("oc4jadmin",
+			// "oc4jadmin");
+
+			String username = (String) context.lookup("java:comp/env/username");
+			String password = (String) context.lookup("java:comp/env/password");
 			connection = factory.createQueueConnection(username, password);
-			
+
 			session = connection.createQueueSession(false, QueueSession.AUTO_ACKNOWLEDGE);
 
 			// hardcoded test/DummmyQueue so moved in env ref
@@ -59,23 +59,25 @@ public class JMSReceiver {
 			receiver = session.createReceiver(queue);
 			connection.start();
 
+			// System.out.println("**Receiving message from the queue**");
+
 			Message message = null;
 			do {
 				message = receiver.receive(1000);
 				if (message instanceof TextMessage) {
 					TextMessage text = (TextMessage) message;
-					System.out.println("Received Test Message is : " + text.getText());
+					System.out.printf("%s \t<----------<\t Received from the %s \n", text.getText(), queue.getQueueName());
 					messages.add(text.getText());
 				} else if (message instanceof ObjectMessage) {
 					ObjectMessage object = (ObjectMessage) message;
-					System.out.println("Received Object Message is : " + object.getObject());
+					System.out.printf("%s \t<----------<\t Received from the %s \n", object.getObject(), queue.getQueueName());
 				}
 			} while (message != null);
 
 			receiver.close();
 			session.close();
 			connection.close();
-			System.out.println("Finish reading from the Queue");
+			// System.out.println("**Finish reading from the Queue**");
 			return messages;
 
 		} catch (Exception e) {
