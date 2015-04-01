@@ -19,49 +19,47 @@
 			<session-type>Stateless</session-type>
 			<transaction-type>Container</transaction-type>
 		</session>
+
 		<message-driven>
+			<description>Direct jms calling example</description>
 			<ejb-name>HELLOWORLDMDB</ejb-name>
 			<ejb-class>com.message.HelloWorldEJBMessageDrivenBean</ejb-class>
 			<messaging-type>javax.jms.MessageListener</messaging-type>
 			<transaction-type>Container</transaction-type>
+
+<!-- Local name also can be used (but then u have to use below property here so that its name can be resolved at mapping time )
 			<activation-config>
-
-					<activation-config-property>
-						<activation-config-property-name>DestinationType</activation-config-property-name>
-						<activation-config-property-value>javax.jms.Queue</activation-config-property-value>
-					</activation-config-property>
-
 				<activation-config-property>
-
 					<activation-config-property-name>DestinationName</activation-config-property-name>
-					<activation-config-property-value>jms/VQ</activation-config-property-value>
+					<activation-config-property-value>local_name</activation-config-property-value>
 				</activation-config-property>
+			</activation-config> -->
 
-				<activation-config-property>
-					<activation-config-property-name>ConnectionFactoryJndiName</activation-config-property-name>
-					<activation-config-property-value>jms/VCF</activation-config-property-value>
-				</activation-config-property>
+			<env-entry>
+				<env-entry-name>MDB_TYPE</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>
 
-
-				<activation-config-property>
-					<!-- Only for JBOSS Required as he listens to  destination-->
-					<activation-config-property-name>destination</activation-config-property-name>
-					<activation-config-property-value>java:/jms/MyFirstLocalQueue</activation-config-property-value>
-				</activation-config-property>
-
-				<activation-config-property>
-					<activation-config-property-name>acknowledgeMode
-                </activation-config-property-name>
-					<activation-config-property-value>Auto-acknowledge
-                </activation-config-property-value>
-				</activation-config-property>
-			</activation-config>
-
-
-
-
+<!-- 		<resource-env-ref>
+				<resource-env-ref-name>local_name</resource-env-ref-name>
+				<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+			</resource-env-ref> -->
 		</message-driven>
 
-	</enterprise-beans>
+		<message-driven>
+			<description>Enhanced jms calling example</description>
+			<ejb-name>HELLOWORLDMDBNEW</ejb-name>
+			<ejb-class>com.message.HelloWorldEJBMessageDrivenBean</ejb-class>
+			<messaging-type>javax.jms.MessageListener</messaging-type>
+			<transaction-type>Container</transaction-type>
+
+			<env-entry>
+				<env-entry-name>MDB_TYPE</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>
+		</message-driven>
+
+		</enterprise-beans>
+
 	<ejb-client-jar>HelloWorldEJBClient.jar</ejb-client-jar>
 </ejb-jar>

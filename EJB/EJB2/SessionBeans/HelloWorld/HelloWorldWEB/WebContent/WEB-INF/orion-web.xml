@@ -3,7 +3,7 @@
 <orion-web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-web-10_0.xsd">
 
 	<env-entry-mapping name="ServerName">Oracle Oc4j</env-entry-mapping>
-	<ejb-ref-mapping name="ejb/remoteVikrant" location="ejb/IAMVIKRANTREMOTE" />
-	<ejb-ref-mapping name="ejb/localVikrant" location="ejb/IAMVIKRANTRELOCAL" />
+	<ejb-ref-mapping name="ejb/remoteVikrant" location="ejb/I_AM_VIKRANT_REMOTE" />
+	<ejb-ref-mapping name="ejb/localVikrant" location="ejb/I_AM_VIKRANT_LOCAL" />
 
 </orion-web-app>

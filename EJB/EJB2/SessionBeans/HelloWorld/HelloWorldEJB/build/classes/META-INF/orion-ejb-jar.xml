@@ -4,8 +4,67 @@
 	schema-major-version="10" schema-minor-version="0">
 
 	<enterprise-beans>
-		<session-deployment name="HELLOWORLDREMOTEEJB" location="ejb/IAMVIKRANTREMOTE"></session-deployment>
-		<session-deployment name="HELLOWORLDLOCALEJB" local-location="ejb/IAMVIKRANTRELOCAL"></session-deployment>
+
+		<session-deployment name="HELLOWORLDREMOTEEJB" location="ejb/I_AM_VIKRANT_REMOTE" local-location="ejb/I_AM_VIKRANT_REMOTE_LOCAL"
+			max-instances="5"></session-deployment>
+		<session-deployment name="HELLOWORLDLOCALEJB" local-location="ejb/I_AM_VIKRANT_LOCAL" location="ejb/I_AM_VIKRANT_LOCAL_REMOTE"
+			max-instances="5"></session-deployment>
+
+
+		<message-driven-deployment name="HELLOWORLDMDB">
+
+
+			<env-entry-mapping name="MDB_TYPE">OC4J Normal JMS</env-entry-mapping>
+			<!-- <resource-env-ref-mapping name="local_name" location="jms/VQ"></resource-env-ref-mapping> -->
+			<config-property>
+				<config-property-name>AcknowledgeMode</config-property-name>
+				<config-property-value>Auto-acknowledge</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>DestinationType</config-property-name>
+				<config-property-value>javax.jms.Queue</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>ConnectionFactoryJndiName</config-property-name>
+				<config-property-value>jms/VCF</config-property-value>
+			</config-property>
+			<!-- Comment this and uncomment above if you want to use local name -->
+			<config-property>
+				<config-property-name>DestinationName</config-property-name>
+				<config-property-value>jms/VQ</config-property-value>
+			</config-property>
+		</message-driven-deployment>
+
+
+		<message-driven-deployment name="HELLOWORLDMDBNEW" resource-adapter="OracleASjms">
+
+			<env-entry-mapping name="MDB_TYPE">OC4J Enhanced JMS</env-entry-mapping>
+
+			<config-property>
+				<config-property-name>AcknowledgeMode</config-property-name>
+				<config-property-value>Auto-acknowledge</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>DestinationType</config-property-name>
+				<config-property-value>javax.jms.Queue</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>ConnectionFactoryJndiName</config-property-name>
+				<config-property-value>OracleASjms/VikCF</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>DestinationName</config-property-name>
+				<config-property-value>OracleASjms/VikQueue</config-property-value>
+			</config-property>
+		</message-driven-deployment>
+
+
+
+
+		<!-- <message-driven-deployment name="HELLOWORLDMDBRAJBOSS" resource-adapter="OracleASjms"> <resource-ref-mapping name="VikrantCF" location="OracleASjms/VikCF"></resource-ref-mapping> 
+			<resource-env-ref-mapping name="VikrantQueue" location="OracleASjms/VikQueue"></resource-env-ref-mapping> You can overwrite the properties heere <config-property> 
+			<config-property-name>DestinationName</config-property-name> <config-property-value>OracleASjms/VikQueue</config-property-value> </config-property> </message-driven-deployment> -->
+
 	</enterprise-beans>
 
 </orion-ejb-jar>
