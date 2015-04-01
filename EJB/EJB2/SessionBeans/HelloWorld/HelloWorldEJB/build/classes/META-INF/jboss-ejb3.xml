@@ -30,12 +30,12 @@
 				</activation-config-property>
 				<activation-config-property>
 					<activation-config-property-name>destination</activation-config-property-name>
-					<activation-config-property-value>java:/jms/MyFirstLocalQueue</activation-config-property-value>
+					<activation-config-property-value>java:jboss/exported/jms/MyFirstRemoteQueue</activation-config-property-value>
 				</activation-config-property>
 			</activation-config>
 			<env-entry>
 				<env-entry-name>MDB_TYPE</env-entry-name>
-				<env-entry-value>JBOSS Normal JMS</env-entry-value>
+				<env-entry-value>JBOSS Normal Remote JMS</env-entry-value>
 			</env-entry>
 		</message-driven>
 
@@ -55,14 +55,14 @@
 				</activation-config-property>
 				<activation-config-property>
 					<activation-config-property-name>destination</activation-config-property-name>
-					<activation-config-property-value>java:jboss/exported/jms/MyFirstRemoteQueue</activation-config-property-value>
+					<activation-config-property-value>java:/jms/MyFirstLocalQueue</activation-config-property-value>
 				</activation-config-property>
 
 			</activation-config>
 
 			<env-entry>
 				<env-entry-name>MDB_TYPE</env-entry-name>
-				<env-entry-value>JBOSS Enhanced JMS</env-entry-value>
+				<env-entry-value>JBOSS Enhanced Local JMS</env-entry-value>
 			</env-entry>
 
 		</message-driven>

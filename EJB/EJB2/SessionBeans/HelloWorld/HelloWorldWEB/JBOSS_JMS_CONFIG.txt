@@ -1,0 +1,43 @@
+JBOSS JMS CONFIG
+
+****JNDI Local****
+CF		:	jms/MyFirstLocalConnectionFactory
+Queue	:	jms/MyFirstLocalQueue
+
+****JNDI Remote****
+CF		:	jms/MyFirstRemoteConnectionFactory
+Queue	:	jms/MyFirstRemoteQueue
+
+************* Standalone jms Configuration **************
+
+                <jms-connection-factories>
+                    <connection-factory name="MyFirstLocalConnectionFactory">
+                        <connectors>
+                            <connector-ref connector-name="in-vm"/>
+                        </connectors>
+                        <entries>
+                            <entry name="jms/MyFirstLocalConnectionFactory"/>
+                        </entries>
+                    </connection-factory>
+                    <connection-factory name="MyFirstRemoteConnectionFactory">
+                        <connectors>
+                            <connector-ref connector-name="netty"/>
+                        </connectors>
+                        <entries>
+                            <entry name="java:jboss/exported/jms/MyFirstRemoteConnectionFactory"/>
+                        </entries>
+                    </connection-factory>
+                </jms-connection-factories>
+
+
+                <jms-destinations>
+                    </jms-queue>
+                    <jms-queue name="MyFirstLocalQueue">
+                        <entry name="jms/MyFirstLocalQueue"/>
+                    </jms-queue>
+                    <jms-queue name="MyFirstRemoteQueue">
+                        <entry name="java:jboss/exported/jms/MyFirstRemoteQueue"/>
+                    </jms-queue>
+                </jms-destinations>
+
+************* End *************

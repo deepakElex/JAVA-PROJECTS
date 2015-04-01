@@ -14,8 +14,8 @@
 		<message-driven-deployment name="HELLOWORLDMDB">
 
 
-			<env-entry-mapping name="MDB_TYPE">OC4J Normal JMS</env-entry-mapping>
-			<!-- <resource-env-ref-mapping name="local_name" location="jms/VQ"></resource-env-ref-mapping> -->
+			<env-entry-mapping name="MDB_TYPE">OC4J Normal Remote JMS</env-entry-mapping>
+			<!-- <resource-env-ref-mapping name="local_name" location="jms/MyFirstRemoteQueue"></resource-env-ref-mapping> -->
 			<config-property>
 				<config-property-name>AcknowledgeMode</config-property-name>
 				<config-property-value>Auto-acknowledge</config-property-value>
@@ -26,19 +26,19 @@
 			</config-property>
 			<config-property>
 				<config-property-name>ConnectionFactoryJndiName</config-property-name>
-				<config-property-value>jms/VCF</config-property-value>
+				<config-property-value>jms/MyFirstRemoteConnectionFactory</config-property-value>
 			</config-property>
 			<!-- Comment this and uncomment above if you want to use local name -->
 			<config-property>
 				<config-property-name>DestinationName</config-property-name>
-				<config-property-value>jms/VQ</config-property-value>
+				<config-property-value>jms/MyFirstRemoteQueue</config-property-value>
 			</config-property>
 		</message-driven-deployment>
 
 
 		<message-driven-deployment name="HELLOWORLDMDBNEW" resource-adapter="OracleASjms">
 
-			<env-entry-mapping name="MDB_TYPE">OC4J Enhanced JMS</env-entry-mapping>
+			<env-entry-mapping name="MDB_TYPE">OC4J Enhanced Local JMS</env-entry-mapping>
 
 			<config-property>
 				<config-property-name>AcknowledgeMode</config-property-name>
@@ -50,11 +50,11 @@
 			</config-property>
 			<config-property>
 				<config-property-name>ConnectionFactoryJndiName</config-property-name>
-				<config-property-value>OracleASjms/VikCF</config-property-value>
+				<config-property-value>OracleASjms/MyFirstRAConnectionFactory</config-property-value>
 			</config-property>
 			<config-property>
 				<config-property-name>DestinationName</config-property-name>
-				<config-property-value>OracleASjms/VikQueue</config-property-value>
+				<config-property-value>OracleASjms/MyFirstRAQueue</config-property-value>
 			</config-property>
 		</message-driven-deployment>
 
