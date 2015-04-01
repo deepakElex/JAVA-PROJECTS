@@ -44,10 +44,10 @@ public class JMSReceiver {
 				message = receiver.receive(1000);
 				if (message instanceof TextMessage) {
 					TextMessage text = (TextMessage) message;
-					System.out.println("Received Test Message is : " + text.getText());
+					System.out.println("Received Test Message from "+queue.getQueueName()+" : " + text.getText());
 				} else if (message instanceof ObjectMessage) {
 					ObjectMessage object = (ObjectMessage) message;
-					System.out.println("Received Object Message is : " + object.getObject());
+					System.out.println("Received Object Message from "+queue.getQueueName()+" : " + object.getObject());
 				}
 			} while (message != null);
 

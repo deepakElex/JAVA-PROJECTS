@@ -20,6 +20,7 @@ import javax.jms.TextMessage;
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -42,19 +43,19 @@ public class JMSSender {
 	        Queue queue = (Queue)context.lookup(PropertiesUtil.getProperty("QUEUE"));
 	        QueueSender sender = session.createSender(queue);
 	        
-	        System.out.println("Sending message to queue");
+	        System.out.println("Sending message to queue : "+queue.getQueueName());
 	         
 	        TextMessage message1 = session.createTextMessage();
-	        message1.setText("Hello ...This is a sample message..sending from a Remote Client");
+	        message1.setText( JOptionPane.showInputDialog("Please enter your message: "));
             sender.send(message1);
             System.out.println("1. Sent TextMessage to the Queue");
              
              
-            ObjectMessage objMsg = session.createObjectMessage();
+/*            ObjectMessage objMsg = session.createObjectMessage();
             String employee = new String("Employee - Vikrant");
             objMsg.setObject(employee);                     
             sender.send(objMsg);
-            System.out.println("2. Sent ObjectMessage to the Queue");
+            System.out.println("2. Sent ObjectMessage to the Queue");*/
 	     
             sender.close();
             session.close();
