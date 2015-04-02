@@ -1,0 +1,34 @@
+OC4J JMS CONFIG
+
+****JNDI Local****
+CF		:	jms/MyFirstLocalConnectionFactory
+Queue	:	jms/MyFirstLocalQueue
+
+****JNDI Remote****
+CF		:	jms/MyFirstRemoteConnectionFactory
+Queue	:	jms/MyFirstRemoteQueue
+
+****JNDI Resource Adapter****
+CF		:	OracleASjms/MyFirstRAConnectionFactory
+			Pointing to Local-> jms/MyFirstLocalConnectionFactory
+Queue	:	OracleASjms/MyFirstRAQueue
+			Pointing to Local-> jms/MyFirstLocalQueue
+
+************* Jms Configuration **************
+
+                <jms-server port="9127">
+					<queue-connection-factory location="jms/MyFirstLocalConnectionFactory">
+					</queue-connection-factory>
+
+					<queue-connection-factory location="jms/MyFirstRemoteConnectionFactory">
+					</queue-connection-factory>
+
+					<queue name="First Local Queue" location="jms/MyFirstLocalQueue">
+							<description>"My first local queue</description>
+					</queue>
+
+					<queue name="First Remote Queue" location="jms/MyFirstRemoteQueue">
+							<description>"My first remote queue</description>
+					</queue>
+                </jms-server>
+************* End *************

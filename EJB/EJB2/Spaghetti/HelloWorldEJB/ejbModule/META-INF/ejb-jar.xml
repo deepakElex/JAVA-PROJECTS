@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ejb-jar id="ejb-jar_ID" version="2.1" xmlns="http://java.sun.com/xml/ns/j2ee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/ejb-jar_2_1.xsd">
+	<display-name>HelloWorldEJB</display-name>
+	<enterprise-beans>
+		<session>
+			<ejb-name>HELLOWORLDREMOTEEJB</ejb-name>
+			<home>com.client.remote.HelloWorldEJBHome</home>
+			<remote>com.client.remote.HelloWorldEJBObject</remote>
+			<ejb-class>com.session.remote.HelloWorldEJBRemoteBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<env-entry>
+				<env-entry-name>username</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>
+			<env-entry>
+				<env-entry-name>password</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>
+			<resource-ref>
+				<res-ref-name>MYCONNFACTORY</res-ref-name>
+				<res-type>javax.jms.QueueConnectionFactory</res-type>
+				<res-auth>Container</res-auth>
+			</resource-ref>
+			<resource-env-ref>
+				<resource-env-ref-name>MYQUEUE</resource-env-ref-name>
+				<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+			</resource-env-ref>
+		</session>
+		<session>
+			<ejb-name>HELLOWORLDLOCALEJB</ejb-name>
+			<local-home>com.client.local.HelloWorldEJBLocalHome</local-home>
+			<local>com.client.local.HelloWorldEJBLocalObject</local>
+			<ejb-class>com.session.local.HelloWorldEJBLocalBean</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<env-entry>
+				<env-entry-name>username</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>
+			<env-entry>
+				<env-entry-name>password</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>
+			<resource-ref>
+				<res-ref-name>MYCONNFACTORY</res-ref-name>
+				<res-type>javax.jms.QueueConnectionFactory</res-type>
+				<res-auth>Container</res-auth>
+			</resource-ref>
+			<resource-env-ref>
+				<resource-env-ref-name>MYQUEUE</resource-env-ref-name>
+				<resource-env-ref-type>javax.jms.Queue</resource-env-ref-type>
+			</resource-env-ref>
+		</session>
+
+		<message-driven>
+			<description>Direct jms calling example</description>
+			<ejb-name>HELLOWORLDMDBREMOTE</ejb-name>
+			<ejb-class>com.message.HelloWorldEJBMessageDrivenBean</ejb-class>
+			<messaging-type>javax.jms.MessageListener</messaging-type>
+			<transaction-type>Container</transaction-type>
+
+			<!-- Local name also can be used (but then u have to use below property here so that its name can be resolved at mapping time ) <activation-config> <activation-config-property> 
+				<activation-config-property-name>DestinationName</activation-config-property-name> <activation-config-property-value>local_name</activation-config-property-value> 
+				</activation-config-property> </activation-config> -->
+
+			<env-entry>
+				<env-entry-name>MDB_TYPE</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>
+			<env-entry>
+				<env-entry-name>MDB_NAME</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>			
+
+	<ejb-ref>
+		<description>remote ejb definition</description>
+		<ejb-ref-name>ejb/remoteVikrant</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<home>com.client.remote.HelloWorldEJBHome</home>
+		<remote>com.client.remote.HelloWorldEJBObject</remote>
+	</ejb-ref>
+
+
+			<!-- <resource-env-ref> <resource-env-ref-name>local_name</resource-env-ref-name> <resource-env-ref-type>javax.jms.Queue</resource-env-ref-type> </resource-env-ref> -->
+		</message-driven>
+
+		<message-driven>
+			<description>Enhanced jms calling example</description>
+			<ejb-name>HELLOWORLDMDBLOCAL</ejb-name>
+			<ejb-class>com.message.HelloWorldEJBMessageDrivenBean</ejb-class>
+			<messaging-type>javax.jms.MessageListener</messaging-type>
+			<transaction-type>Container</transaction-type>
+
+			<env-entry>
+				<env-entry-name>MDB_TYPE</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>
+			<env-entry>
+				<env-entry-name>MDB_NAME</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+			</env-entry>						
+			
+	<ejb-local-ref>
+		<description></description>
+		<ejb-ref-name>ejb/localVikrant</ejb-ref-name>
+		<ejb-ref-type>Session</ejb-ref-type>
+		<local-home>com.client.local.HelloWorldEJBLocalHome</local-home>
+		<local>com.client.local.HelloWorldEJBLocalObject</local>
+	</ejb-local-ref>
+				
+		</message-driven>
+
+	</enterprise-beans>
+
+	<ejb-client-jar>HelloWorldEJBClient.jar</ejb-client-jar>
+</ejb-jar>

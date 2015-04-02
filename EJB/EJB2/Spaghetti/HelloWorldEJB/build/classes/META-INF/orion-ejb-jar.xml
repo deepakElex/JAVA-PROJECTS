@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<orion-ejb-jar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://xmlns.oracle.com/oracleas/schema/orion-ejb-jar-10_0.xsd"
+	schema-major-version="10" schema-minor-version="0">
+
+	<enterprise-beans>
+
+		<session-deployment name="HELLOWORLDREMOTEEJB" location="ejb/I_AM_VIKRANT_REMOTE" local-location="ejb/I_AM_VIKRANT_REMOTE_LOCAL"
+			max-instances="5">
+			<env-entry-mapping name="username">oc4jadmin</env-entry-mapping>
+			<env-entry-mapping name="password">oc4jadmin</env-entry-mapping>
+
+			<resource-ref-mapping name="MYCONNFACTORY" location="jms/MyFirstRemoteConnectionFactory" />
+			<resource-env-ref-mapping name="MYQUEUE" location="jms/MyFirstRemoteQueue" />
+
+		</session-deployment>
+		<session-deployment name="HELLOWORLDLOCALEJB" local-location="ejb/I_AM_VIKRANT_LOCAL" location="ejb/I_AM_VIKRANT_LOCAL_REMOTE"
+			max-instances="5">
+
+			<env-entry-mapping name="username">oc4jadmin</env-entry-mapping>
+			<env-entry-mapping name="password">oc4jadmin</env-entry-mapping>
+
+			<resource-ref-mapping name="MYCONNFACTORY" location="OracleASjms/MyFirstRAConnectionFactory" />
+			<resource-env-ref-mapping name="MYQUEUE" location="OracleASjms/MyFirstRAQueue" />
+
+		</session-deployment>
+
+
+		<message-driven-deployment name="HELLOWORLDMDBREMOTE">
+
+
+			<env-entry-mapping name="MDB_TYPE">REMOTE</env-entry-mapping>
+			<env-entry-mapping name="MDB_NAME">OC4J Normal Remote JMS</env-entry-mapping>
+
+			<ejb-ref-mapping name="ejb/remoteVikrant" location="ejb/I_AM_VIKRANT_REMOTE" />
+
+			<!-- <resource-env-ref-mapping name="local_name" location="jms/MyFirstRemoteQueue"></resource-env-ref-mapping> -->
+			<config-property>
+				<config-property-name>AcknowledgeMode</config-property-name>
+				<config-property-value>Auto-acknowledge</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>DestinationType</config-property-name>
+				<config-property-value>javax.jms.Queue</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>ConnectionFactoryJndiName</config-property-name>
+				<config-property-value>jms/MyFirstRemoteConnectionFactory</config-property-value>
+			</config-property>
+			<!-- Comment this and uncomment above if you want to use local name -->
+			<config-property>
+				<config-property-name>DestinationName</config-property-name>
+				<config-property-value>jms/MyFirstRemoteQueue</config-property-value>
+			</config-property>
+
+		</message-driven-deployment>
+
+
+		<message-driven-deployment name="HELLOWORLDMDBLOCAL" resource-adapter="OracleASjms">
+
+			<env-entry-mapping name="MDB_TYPE">LOCAL</env-entry-mapping>
+			<env-entry-mapping name="MDB_NAME">OC4J Enhanced Local JMS</env-entry-mapping>
+
+			<ejb-ref-mapping name="ejb/localVikrant" location="ejb/I_AM_VIKRANT_LOCAL" />
+
+			<config-property>
+				<config-property-name>AcknowledgeMode</config-property-name>
+				<config-property-value>Auto-acknowledge</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>DestinationType</config-property-name>
+				<config-property-value>javax.jms.Queue</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>ConnectionFactoryJndiName</config-property-name>
+				<config-property-value>OracleASjms/MyFirstRAConnectionFactory</config-property-value>
+			</config-property>
+			<config-property>
+				<config-property-name>DestinationName</config-property-name>
+				<config-property-value>OracleASjms/MyFirstRAQueue</config-property-value>
+			</config-property>
+		</message-driven-deployment>
+
+	</enterprise-beans>
+
+</orion-ejb-jar>

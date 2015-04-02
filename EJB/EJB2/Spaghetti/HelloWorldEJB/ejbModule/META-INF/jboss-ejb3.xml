@@ -1,0 +1,136 @@
+
+<ejb-jar xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/ejb-jar_3_1.xsd"
+	version="3.1">
+
+	<enterprise-beans>
+		<session>
+			<ejb-name>HELLOWORLDLOCALEJB</ejb-name>
+
+			<!-- These will not work as the name is fixed, u cant change it dude -->
+			<!-- <home>home</home> -->
+			<!-- <remote>remote</remote> -->
+			<!-- <local-home>local_home</local-home> -->
+			<!-- <local>local</local> -->
+			<!-- <business-local>bus_local</business-local> -->
+			<!-- <business-remote>bus_remote</business-remote> -->
+
+			<env-entry>
+				<env-entry-name>username</env-entry-name>
+				<env-entry-value>admin</env-entry-value>
+			</env-entry>
+
+			<env-entry>
+				<env-entry-name>password</env-entry-name>
+				<env-entry-value>admin@123</env-entry-value>
+			</env-entry>
+
+			<resource-ref>
+				<res-ref-name>MYCONNFACTORY</res-ref-name>
+				<lookup-name>java:/jms/MyFirstLocalConnectionFactory</lookup-name>
+			</resource-ref>
+
+			<resource-env-ref>
+				<resource-env-ref-name>MYQUEUE</resource-env-ref-name>
+				<lookup-name>java:/jms/MyFirstLocalQueue</lookup-name>
+			</resource-env-ref>
+		</session>
+		<session>
+			<ejb-name>HELLOWORLDREMOTEEJB</ejb-name>
+
+			<env-entry>
+				<env-entry-name>username</env-entry-name>
+				<env-entry-value>admin</env-entry-value>
+			</env-entry>
+
+			<env-entry>
+				<env-entry-name>password</env-entry-name>
+				<env-entry-value>admin@123</env-entry-value>
+			</env-entry>
+
+			<resource-ref>
+				<res-ref-name>MYCONNFACTORY</res-ref-name>
+				<lookup-name>java:jboss/exported/jms/MyFirstRemoteConnectionFactory</lookup-name>
+			</resource-ref>
+
+			<resource-env-ref>
+				<resource-env-ref-name>MYQUEUE</resource-env-ref-name>
+				<lookup-name>java:jboss/exported/jms/MyFirstRemoteQueue</lookup-name>
+			</resource-env-ref>
+		</session>
+
+		<message-driven>
+
+			<ejb-name>HELLOWORLDMDBREMOTE</ejb-name>
+			<!-- You can overwrite or simply declare the properties here -->
+
+			<activation-config>
+				<activation-config-property>
+					<activation-config-property-name>acknowledgeMode</activation-config-property-name>
+					<activation-config-property-value>Auto-acknowledge</activation-config-property-value>
+				</activation-config-property>
+				<activation-config-property>
+					<activation-config-property-name>destinationType</activation-config-property-name>
+					<activation-config-property-value>javax.jms.Queue</activation-config-property-value>
+				</activation-config-property>
+				<activation-config-property>
+					<activation-config-property-name>destination</activation-config-property-name>
+					<activation-config-property-value>java:jboss/exported/jms/MyFirstRemoteQueue</activation-config-property-value>
+				</activation-config-property>
+			</activation-config>
+
+			<env-entry>
+				<env-entry-name>MDB_TYPE</env-entry-name>
+				<env-entry-value>REMOTE</env-entry-value>
+			</env-entry>
+			<env-entry>
+				<env-entry-name>MDB_NAME</env-entry-name>
+				<env-entry-value>JBOSS Normal Remote JMS</env-entry-value>
+			</env-entry>
+
+			<ejb-ref>
+				<ejb-ref-name>ejb/remoteVikrant</ejb-ref-name>
+				<lookup-name>java:app/HelloWorldEJB/HELLOWORLDREMOTEEJB!com.client.remote.HelloWorldEJBHome</lookup-name>
+			</ejb-ref>
+
+
+		</message-driven>
+
+
+		<message-driven>
+			<ejb-name>HELLOWORLDMDBLOCAL</ejb-name>
+
+			<!-- You can overwrite or simply declare the properties here -->
+			<activation-config>
+				<activation-config-property>
+					<activation-config-property-name>acknowledgeMode</activation-config-property-name>
+					<activation-config-property-value>Auto-acknowledge</activation-config-property-value>
+				</activation-config-property>
+				<activation-config-property>
+					<activation-config-property-name>destinationType</activation-config-property-name>
+					<activation-config-property-value>javax.jms.Queue</activation-config-property-value>
+				</activation-config-property>
+				<activation-config-property>
+					<activation-config-property-name>destination</activation-config-property-name>
+					<activation-config-property-value>java:/jms/MyFirstLocalQueue</activation-config-property-value>
+				</activation-config-property>
+
+			</activation-config>
+
+			<env-entry>
+				<env-entry-name>MDB_TYPE</env-entry-name>
+				<env-entry-value>LOCAL</env-entry-value>
+			</env-entry>
+			<env-entry>
+				<env-entry-name>MDB_NAME</env-entry-name>
+				<env-entry-value>JBOSS Enhanced Local JMS</env-entry-value>
+			</env-entry>
+
+			<ejb-local-ref>
+				<ejb-ref-name>ejb/localVikrant</ejb-ref-name>
+				<lookup-name>java:app/HelloWorldEJB/HELLOWORLDLOCALEJB!com.client.local.HelloWorldEJBLocalHome</lookup-name>
+			</ejb-local-ref>
+
+		</message-driven>
+	</enterprise-beans>
+
+</ejb-jar>
