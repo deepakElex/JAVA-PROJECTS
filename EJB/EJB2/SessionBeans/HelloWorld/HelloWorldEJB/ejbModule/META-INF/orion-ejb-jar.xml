@@ -58,13 +58,6 @@
 			</config-property>
 		</message-driven-deployment>
 
-
-
-
-		<!-- <message-driven-deployment name="HELLOWORLDMDBRAJBOSS" resource-adapter="OracleASjms"> <resource-ref-mapping name="VikrantCF" location="OracleASjms/VikCF"></resource-ref-mapping> 
-			<resource-env-ref-mapping name="VikrantQueue" location="OracleASjms/VikQueue"></resource-env-ref-mapping> You can overwrite the properties heere <config-property> 
-			<config-property-name>DestinationName</config-property-name> <config-property-value>OracleASjms/VikQueue</config-property-value> </config-property> </message-driven-deployment> -->
-
 	</enterprise-beans>
 
 </orion-ejb-jar>
