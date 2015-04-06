@@ -4,8 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
+import javax.persistence.Table;
 
 @Entity
+@Table
+@NamedQuery(name = "Employee.find_the_employ_id_by_the_name", query ="Select e from Employee e where e.eid = :id" )
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

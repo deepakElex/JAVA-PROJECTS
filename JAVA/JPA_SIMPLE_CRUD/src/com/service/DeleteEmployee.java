@@ -11,7 +11,7 @@ public class DeleteEmployee {
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("DerbyPersistenceUnit");
 		EntityManager entitymanager = emfactory.createEntityManager();
 		entitymanager.getTransaction().begin();
-		Employee employee = entitymanager.find(Employee.class, 1);
+		Employee employee = entitymanager.find(Employee.class, 51);
 		entitymanager.remove(employee);
 		entitymanager.getTransaction().commit();
 		entitymanager.close();
