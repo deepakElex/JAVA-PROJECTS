@@ -21,6 +21,19 @@ public class ListAllEmployee {
 			System.out.println(e);
 		}
 
+
+/*
+		Query query = em.createNativeQuery("SELECT SYSDATE FROM DUAL");
+		Date result = (Date)query.getSingleResult();
+		System.out.println("Date-"+result);
+*/
+
+		Query query = em.createNativeQuery("SELECT MAX(SALARY), MIN(SALARY) FROM EMPLOYEE");
+		List<Object[]> results = query.getResultList();
+		int max = results.get(0)[0];
+		int min = results.get(0)[1];
+
+
 		query = entitymanager.createQuery("Select  e.account,e.id from Employee e ORDER BY e.account,e.id");
 
 		List<Object[]> list2 = query.getResultList();

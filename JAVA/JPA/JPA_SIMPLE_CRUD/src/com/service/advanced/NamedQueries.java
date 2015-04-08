@@ -14,7 +14,7 @@ public class NamedQueries {
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("DerbyPersistenceUnit");
 		EntityManager entitymanager = emfactory.createEntityManager();
 		Query query = entitymanager.createNamedQuery("Employee.find_the_employ_id_by_the_name");
-		query.setParameter("id", 251);
+		query.setParameter("id", 451);
 		List<Employee> list = query.getResultList();
 		for (Employee e : list) {
 			System.out.print("Employee ID :" + e.getEid());

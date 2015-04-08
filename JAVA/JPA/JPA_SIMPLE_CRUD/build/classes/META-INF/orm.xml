@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings version="2.0" xmlns="http://java.sun.com/xml/ns/persistence/orm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/orm http://java.sun.com/xml/ns/persistence/orm_2_0.xsd">
+	<description>My First JPA XML Application</description>
+	<package>com.model</package>
+	<entity class="Employee" name="Employee">
+		<table name="EMPLOYEETABLE" />
+		<named-query name="Employee.find_the_employ_id_by_the_name">
+			<query>Select e from Employee e where e.eid = :id</query>
+		</named-query>
+		<attributes>
+			<id name="eid">
+				<generated-value strategy="AUTO" />
+			</id>
+			<basic name="ename">
+				<column name="EMP_NAME" length="100" />
+			</basic>
+			<basic name="salary">
+			</basic>
+			<basic name="deg">
+			</basic>
+		</attributes>
+
+	</entity>
+
+
+
+</entity-mappings>
