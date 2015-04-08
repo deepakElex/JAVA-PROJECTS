@@ -18,9 +18,9 @@ public class CreateEmployee {
 		Employee employee = new Employee();
 		// Not Required as its auto
 		// employee.setEid(1201);
-		employee.setEname("Mohan Pyare");
-		employee.setSalary(35000);
-		employee.setDeg("Software Engineer");
+		employee.setEname("Shyam Pyare");
+		employee.setSalary(15000);
+		employee.setDeg("Software Tester");
 		entitymanager.persist(employee);
 		entitymanager.getTransaction().commit();
 		entitymanager.close();
