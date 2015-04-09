@@ -1,0 +1,8 @@
+
+drop table employee;
+create table EMPLOYEE (ID integer,NANME varchar(10)); 
+
+insert into EMPLOYEE values (1,'Dummy');
+insert into EMPLOYEE values (2,'TestUser');
+
+select * from Employee;

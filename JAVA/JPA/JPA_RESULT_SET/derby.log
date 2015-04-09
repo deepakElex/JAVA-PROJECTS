@@ -1,6 +1,6 @@
 ----------------------------------------------------------------
-Wed Apr 08 13:10:08 GST 2015:
-Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014c-984b-36ec-00000d76bbf8 
+Wed Apr 08 15:33:48 GST 2015:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.11.1.1 - (1616546): instance a816c00e-014c-98ce-bd78-00000d768540 
 on database directory C:\DEVELOPMENT\DB\MyDB2 with class loader sun.misc.Launcher$AppClassLoader@3326b249 
 Loaded from file:/C:/DEVELOPMENT/DB/db-derby-10.11.1.1-bin/lib/derby.jar
 java.vendor=Sun Microsystems Inc.

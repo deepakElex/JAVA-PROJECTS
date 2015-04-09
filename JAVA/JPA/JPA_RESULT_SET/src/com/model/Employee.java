@@ -1,5 +1,6 @@
 package com.model;
 
+import javax.persistence.ColumnResult;
 import javax.persistence.Entity;
 import javax.persistence.EntityResult;
 import javax.persistence.FieldResult;
@@ -33,7 +34,21 @@ import javax.persistence.Table;
 
 @EntityResult(entityClass = Employee.class, fields = { @FieldResult(name = "eid", column = "column1"), @FieldResult(name = "ename", column = "column2") })
 
-}) })
+}),
+
+@SqlResultSetMapping(name = "EmployeeMappingDirect", entities = {
+
+@EntityResult(entityClass = Employee.class) 
+
+}),
+
+@SqlResultSetMapping(name = "EmployeeMappingWithExtraColumns", entities = {
+
+@EntityResult(entityClass = Employee.class)
+
+}, columns = {@ColumnResult(name="Total")} )
+
+})
 public class Employee {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

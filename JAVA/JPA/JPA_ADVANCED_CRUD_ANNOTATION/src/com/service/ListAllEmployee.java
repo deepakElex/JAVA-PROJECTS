@@ -23,16 +23,10 @@ public class ListAllEmployee {
 
 
 /*
-		Query query = em.createNativeQuery("SELECT SYSDATE FROM DUAL");
+		query = entitymanager.createNativeQuery("SELECT SYSDATE FROM DUAL");
 		Date result = (Date)query.getSingleResult();
 		System.out.println("Date-"+result);
 */
-
-		Query query = em.createNativeQuery("SELECT MAX(SALARY), MIN(SALARY) FROM EMPLOYEE");
-		List<Object[]> results = query.getResultList();
-		int max = results.get(0)[0];
-		int min = results.get(0)[1];
-
 
 		query = entitymanager.createQuery("Select  e.account,e.id from Employee e ORDER BY e.account,e.id");
 
@@ -42,6 +36,14 @@ public class ListAllEmployee {
 			int id = (Integer) objects[1];
 			System.out.println(" Account " + account + "	| id-	" + id);
 		}
+		
+
+		query = entitymanager.createNativeQuery("SELECT MAX(SALARY), MIN(SALARY) FROM EMPLOYEE_ADVANCED");
+		List<Object[]> results = query.getResultList();
+		double max = (Double) results.get(0)[0];
+		double min = (Double) results.get(0)[1];
+		System.out.println("Max Salary -"+max);
+		System.out.println("Min Salary -"+min);
 
 		entitymanager.close();
 		emfactory.close();

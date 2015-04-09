@@ -73,6 +73,23 @@ public class ListAllEmployee {
 		for (Employee e : list) {
 			System.out.println(e);
 		}
+		
+		System.out.println("\nUsing custom createNativeQuery with Mapper");
+		query = entitymanager.createNativeQuery("Select e.eid, e.ename from Employee e order by 1", "EmployeeMappingDirect");
+		list = (List<Employee>) query.getResultList();
+		for (Employee e : list) {
+			System.out.println(e);
+		}
+		
+		System.out.println("\nUsing custom createNativeQuery with Mapper with Extra columns");
+		query = entitymanager.createNativeQuery("Select e.eid, e.ename , 100 as Total from Employee e order by 1", "EmployeeMappingWithExtraColumns");
+		
+		List<Object[]> listobj = query.getResultList();
+		for (Object[] ob : listobj) {
+			Employee emp = (Employee) ob[0];
+			int tot = (Integer) ob[1];
+			System.out.println(" Emp -" + emp + "	|	Total-	" + tot);
+		}
 
 		System.out.println("\nUsing custom createNativeQuery with mapping name random fields ");
 		query = entitymanager.createNativeQuery("Select e.eid column1, e.ename column2 from Employee e order by 1", "EmployeeMapping");
@@ -80,7 +97,18 @@ public class ListAllEmployee {
 		for (Employee e : list) {
 			System.out.println(e);
 		}
+		
 
+		System.out.println("\nUsing custom createNativeQuery with mapping name random fields ");
+		query = entitymanager.createNativeQuery("Select e.eid one, e.ename two from Employee e order by 1");
+		
+		List<Object[]> list2 = query.getResultList();
+		for (Object[] objects : list2) {
+			int id = (Integer) objects[0];
+			String name = (String) objects[1];
+			System.out.println(" Id-" + id + " | Name-	" + name);
+		}
+		
 		entitymanager.close();
 		emfactory.close();
 	}

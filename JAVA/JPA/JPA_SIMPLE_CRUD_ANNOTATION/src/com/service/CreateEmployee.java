@@ -12,6 +12,14 @@ public class CreateEmployee {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+
+/*
+		Map addedOrOverridenProperties = new HashMap();
+		// Let's suppose we are changing ddl-generation
+		addedOrOverridenProperties.put(PersistenceUnitProperties.DDL_GENERATION,PersistenceUnitProperties.NONE );
+		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("DerbyPersistenceUnit",addedOrOverridenProperties);
+*/
+
 		EntityManagerFactory emfactory = Persistence.createEntityManagerFactory("DerbyPersistenceUnit");
 		EntityManager entitymanager = emfactory.createEntityManager();
 		entitymanager.getTransaction().begin();
